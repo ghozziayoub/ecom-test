@@ -1,34 +1,38 @@
 const categories = [
     {
         id: 0,
-        categorie: "All",
+        name: "All",
     },
     {
         id:1,
-        categorie:"Informatique",
+        name:"Informatique",
     },
     {
         id:2,
-        categorie:"Electromenager",
+        name:"Electromenager",
     },
     {
         id:3,
-        categorie:"Mode et Beauté",
+        name:"Mode et Beauté",
     },
     {
         id:4,
-        categorie:"Maison-Décoration",
+        name:"Maison-Décoration",
     },
     {
         id:5,
-        categorie:"Sports", 
+        name:"Sports", 
     },
  ];
 const ulCategoriesList = document.getElementById('categories-list');
 
-function display() {
+
+function displayCategories() {
     for (i = 0; i < categories.length; i++) {
-        ulCategoriesList.innerHTML = ulCategoriesList.innerHTML + `<li>${categories[i].categorie}</li>`;
+        ulCategoriesList.innerHTML = ulCategoriesList.innerHTML + `<li>${categories[i].name}</li>`;
     }
 }
-display();
+displayCategories();
+
+
+// 
