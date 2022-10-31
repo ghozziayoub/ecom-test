@@ -117,8 +117,11 @@ const displayProducts = () => {
     }
 }
 
+const init = () => {
+    displayCategories();
+    displayProducts();
+}
 
 // Function's calls
-displayCategories();
-displayProducts();
+init()
 
