@@ -1,3 +1,4 @@
+// DATA
 const categories = [
     {
         id: 0,
@@ -24,19 +25,6 @@ const categories = [
         name: "Traiteurs et Pâtisserie",
     },
 ];
-const ulCategoriesList = document.getElementById('categories-list');
-
-
-function displayCategories() {
-    for (i = 0; i < categories.length; i++) {
-        ulCategoriesList.innerHTML += `<li>${categories[i].name}</li>`;
-    }
-}
-displayCategories();
-
-
-// display-products 
-
 const products = [
     {
         id: 0,
@@ -75,20 +63,52 @@ const products = [
     },
 ];
 
+let displayedProducts = products
+
+// Global HTML variables
+const ulCategoriesList = document.getElementById('categories-list');
 const divProductsList = document.getElementById('products-list');
 
-function displayProducts() {
-    for (i = 0; i < products.length; i++) {
+// Functions
+const filterProductsByCategoryId = id => {
+
+    displayedProducts = []
+
+    id == 0 ? displayedProducts = products : displayedProducts = products.filter(product => product.categoryId == id)
+
+    displayProducts()
+
+    /*
+       for (let i = 0; i < products.length; i++) {
+            if (products[i].categoryId == id) {
+                displayedProducts.push(products[i])
+            }
+        } 
+    */
+
+
+}
+
+const displayCategories = () => {
+    for (i = 0; i < categories.length; i++) {
+        ulCategoriesList.innerHTML += `<li onclick="filterProductsByCategoryId(${categories[i].id})">${categories[i].name}</li>`;
+    }
+}
+
+const displayProducts = () => {
+    divProductsList.innerHTML = ""
+
+    for (i = 0; i < displayedProducts.length; i++) {
         divProductsList.innerHTML += `<div class="product-item">
        <div class="product-image">
          <img
-           src="${products[i].imageUrl}"
+           src="${displayedProducts[i].imageUrl}"
            alt=""
          />
        </div>
        <div class="product-details">
-         <h3>${products[i].title}</h3>
-         <h5>${products[i].price}</h5>
+         <h3>${displayedProducts[i].title}</h3>
+         <h5>${displayedProducts[i].price}</h5>
        </div>
        <div class="product-action">
          <button class="btn">Add To Cart</button>
@@ -96,5 +116,9 @@ function displayProducts() {
      </div>`;
     }
 }
+
+
+// Function's calls
+displayCategories();
 displayProducts();
 
