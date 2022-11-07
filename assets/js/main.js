@@ -1,3 +1,8 @@
+// Global HTML variables
+const ulCategoriesList = document.getElementById('categories-list');
+const divProductsList = document.getElementById('products-list');
+const spanCartNumber = document.getElementById('cart-number');
+
 // DATA
 const categories = [
     {
@@ -65,9 +70,6 @@ const products = [
 
 let displayedProducts = products
 
-// Global HTML variables
-const ulCategoriesList = document.getElementById('categories-list');
-const divProductsList = document.getElementById('products-list');
 
 // Functions
 const filterProductsByCategoryId = id => {
@@ -111,15 +113,30 @@ const displayProducts = () => {
          <h5>${displayedProducts[i].price}</h5>
        </div>
        <div class="product-action">
-         <button class="btn">Add To Cart</button>
+         <button class="btn" onclick="addToCart()" >Add To Cart</button>
        </div>
      </div>`;
+    }
+}
+
+const addToCart = () => {
+    spanCartNumber.textContent = Number(spanCartNumber.textContent) + 1;
+}
+
+const displayCartNumber = () => {
+
+    const strCartNumber = localStorage.getItem('cart-number')
+    if (strCartNumber) {
+        spanCartNumber.textContent = strCartNumber;
+    } else {
+        spanCartNumber.textContent = 0;
     }
 }
 
 const init = () => {
     displayCategories();
     displayProducts();
+    displayCartNumber();
 }
 
 // Function's calls
