@@ -146,7 +146,7 @@ const addToCart = (productId) => {
 
     }
 
-    localStorage.setItem('cart-products',JSON.stringify(productsInCart));
+    localStorage.setItem('cart-products', JSON.stringify(productsInCart));
 }
 
 const displayCartNumber = () => {
@@ -176,5 +176,4 @@ const init = () => {
 }
 
 // Function's calls
-init()
-
+init();
