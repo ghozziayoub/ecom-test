@@ -41,3 +41,9 @@ td {
     width: 80%;
     opacity: 0.9;
 }
+
+.price {
+    float: right;
+    padding-right: 250px;
+    margin: 75px 0;
+}

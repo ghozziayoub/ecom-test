@@ -1,5 +1,6 @@
 const spanCartNumber = document.getElementById('cart-number');
 const tbodyTableContent = document.getElementById('table-content');
+const spanTotalPrice = document.getElementById('total-price');
 
 const products = [
     {
@@ -41,6 +42,7 @@ const products = [
 
 let productsInCart = [];
 
+
 const displayCartNumber = () => {
 
     const strCartNumber = localStorage.getItem('cart-number')
@@ -52,9 +54,13 @@ const displayCartNumber = () => {
 }
 
 const displayProductsInCart = () => {
+
     const strCartProducts = localStorage.getItem('cart-products');
+    let sum = 0;
+
     if (strCartProducts) {
         productsInCart = JSON.parse(strCartProducts);
+        tbodyTableContent.innerHTML = ""
         for (i = 0; i < productsInCart.length; i++) {
             for (j = 0; j < products.length; j++) {
                 if (productsInCart[i].id == products[j].id) {
@@ -68,9 +74,11 @@ const displayProductsInCart = () => {
                   <td>${productsInCart[i].qte}</td>
                   <td> ${productsInCart[i].qte * products[j].price} </td>
                   <td>
-                    <button class="btn-delete">Delete</button>
+                    <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
                     </td> 
                  </tr>`
+                    sum += productsInCart[i].qte * products[j].price;
+                    spanTotalPrice.textContent = sum;
                     break;
                 }
             }
@@ -81,6 +89,24 @@ const displayProductsInCart = () => {
     }
 }
 
+const removeProductInCart = (productId) => {
+    // search for index
+    let index = -1;
+    for (i = 0; i < productsInCart.length; i++) {
+        if (productsInCart[i].id == productId) {
+            index = i;
+            break;
+        }
+    }
+
+    spanCartNumber.textContent = Number(spanCartNumber.textContent) - productsInCart[index].qte;
+    localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+    productsInCart.splice(index, 1);
+    localStorage.setItem('cart-products', JSON.stringify(productsInCart));
+
+    init();
+}
 
 const init = () => {
     displayCartNumber();
