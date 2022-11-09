@@ -1,3 +1,8 @@
+// Global HTML variables
+const ulCategoriesList = document.getElementById('categories-list');
+const divProductsList = document.getElementById('products-list');
+const spanCartNumber = document.getElementById('cart-number');
+
 // DATA
 const categories = [
     {
@@ -64,10 +69,8 @@ const products = [
 ];
 
 let displayedProducts = products
+let productsInCart = [];
 
-// Global HTML variables
-const ulCategoriesList = document.getElementById('categories-list');
-const divProductsList = document.getElementById('products-list');
 
 // Functions
 const filterProductsByCategoryId = id => {
@@ -111,15 +114,65 @@ const displayProducts = () => {
          <h5>${displayedProducts[i].price}</h5>
        </div>
        <div class="product-action">
-         <button class="btn">Add To Cart</button>
+         <button class="btn" onclick="addToCart(${displayedProducts[i].id})" >Add To Cart</button>
        </div>
      </div>`;
+    }
+}
+
+const addToCart = (productId) => {
+
+    spanCartNumber.textContent = Number(spanCartNumber.textContent) + 1;
+    localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+    if (productsInCart.length == 0) {
+        productsInCart.push({ id: productId, qte: 1 })
+    } else {
+        // search for index
+        let index = -1;
+        for (i = 0; i < productsInCart.length; i++) {
+            if (productsInCart[i].id == productId) {
+                index = i;
+                break;
+            }
+        }
+
+        // after search
+        if (index >= 0) {
+            productsInCart[index].qte++;
+        } else {
+            productsInCart.push({ id: productId, qte: 1 })
+        }
+
+    }
+
+    localStorage.setItem('cart-products',JSON.stringify(productsInCart));
+}
+
+const displayCartNumber = () => {
+
+    const strCartNumber = localStorage.getItem('cart-number')
+    if (strCartNumber) {
+        spanCartNumber.textContent = strCartNumber;
+    } else {
+        spanCartNumber.textContent = 0;
+    }
+}
+
+const initProductsInCart = () => {
+    const strCartProducts = localStorage.getItem('cart-products');
+    if (strCartProducts) {
+        productsInCart = JSON.parse(strCartProducts);
+    } else {
+        productsInCart = [];
     }
 }
 
 const init = () => {
     displayCategories();
     displayProducts();
+    displayCartNumber();
+    initProductsInCart();
 }
 
 // Function's calls
