@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/cart.css" />
+    <link rel="stylesheet" href="./assets/css/theme.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Cart-page</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <div class="container navbar bg-gray">
+      <!-- logo -->
+      <div class="logo">
+        <a href="./index.html"
+          ><img
+            src="https://lys.tn/assets/images/primary_logo.png"
+            alt="Logo Lys"
+            class="logo-img"
+        /></a>
+      </div>
+      <div class="shopping-cart">
+        <span>
+          <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </span>
+        <span id="cart-number"></span>
+      </div>
+    </div>
+
+    <!-- Cart products -->
+
+    <div class="container cart-products">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="6">My Shopping Cart</th>
+          </tr>
+        </thead>
+        <tbody id="table-content">
+          <tr class="table-header">
+            <td>Image</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Qty</td>
+            <td>Total</td>
+            <td>#</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="price">
+        <h3>Total : <span id="total-price"></span></p>
+      </div>
+    </div>
+
+    <script src="./assets/js/cart.js"></script>
+  </body>
+</html>
