@@ -66,17 +66,17 @@ const displayProductsInCart = () => {
                 if (productsInCart[i].id == products[j].id) {
                     tbodyTableContent.innerHTML += `
                     <tr>
-                       <td>
-                    <img class ="cart-product-img" src="${products[j].imageUrl}">
-                  </td>
-                  <td>${products[j].title}</td>
-                  <td>${products[j].price}</td>
-                  <td>${productsInCart[i].qte}</td>
-                  <td> ${productsInCart[i].qte * products[j].price} </td>
-                  <td>
-                    <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
-                    </td> 
-                 </tr>`
+                        <td>
+                            <img class ="cart-product-img" src="${products[j].imageUrl}">
+                        </td>
+                        <td>${products[j].title}</td>
+                        <td>${products[j].price}</td>
+                        <td>${productsInCart[i].qte}</td>
+                        <td> ${productsInCart[i].qte * products[j].price} </td>
+                        <td>
+                            <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
+                        </td> 
+                    </tr>`
                     sum += productsInCart[i].qte * products[j].price;
                     spanTotalPrice.textContent = sum;
                     break;
