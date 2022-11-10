@@ -71,8 +71,12 @@ const displayProductsInCart = () => {
                         </td>
                         <td>${products[j].title}</td>
                         <td>${products[j].price}</td>
-                        <td>${productsInCart[i].qte}</td>
-                        <td> ${productsInCart[i].qte * products[j].price} </td>
+                        <td>
+                        <button class="btn-minus" id="minus-btn" onclick="minusQuantity(${i})"> - </button>
+                        ${productsInCart[i].qte}
+                        <button class="btn-plus" id="plus-btn" onclick="plusQuantity(${i})"> + </button>
+                        </td>
+                        <td>${productsInCart[i].qte * products[j].price}</td>
                         <td>
                             <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
                         </td> 
@@ -106,6 +110,31 @@ const removeProductInCart = (productId) => {
     localStorage.setItem('cart-products', JSON.stringify(productsInCart));
 
     init();
+}
+
+const plusQuantity = (index) => {
+
+    spanCartNumber.textContent = Number(spanCartNumber.textContent) + 1;
+    localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+    productsInCart[index].qte++;
+    localStorage.setItem('cart-products', JSON.stringify(productsInCart));
+
+    init();
+
+}
+
+const minusQuantity = (index) => {
+    if (productsInCart[index].qte > 1) {
+        spanCartNumber.textContent = Number(spanCartNumber.textContent) - 1;
+        localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+        productsInCart[index].qte--;
+        localStorage.setItem('cart-products', JSON.stringify(productsInCart));
+
+        init();
+    }
+
 }
 
 const init = () => {
