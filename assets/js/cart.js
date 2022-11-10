@@ -1,6 +1,7 @@
 const spanCartNumber = document.getElementById('cart-number');
 const tbodyTableContent = document.getElementById('table-content');
 const spanTotalPrice = document.getElementById('total-price');
+const divCartProducts = document.getElementById('cart-products')
 
 const products = [
     {
@@ -90,6 +91,13 @@ const displayProductsInCart = () => {
         }
     } else {
         productsInCart = [];
+        divCartProducts.innerHTML = `
+        <h1 style="text-align:center"> Your Shopping Cart is Empty </h1> ` ;
+    }
+
+    if ( productsInCart.length == 0) {
+        divCartProducts.innerHTML = `
+        <h1 style="text-align:center"> Your Shopping Cart is Empty </h1> ` ;
     }
 }
 
