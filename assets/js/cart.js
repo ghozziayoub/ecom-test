@@ -1,6 +1,7 @@
 const spanCartNumber = document.getElementById('cart-number');
 const tbodyTableContent = document.getElementById('table-content');
 const spanTotalPrice = document.getElementById('total-price');
+const divCartProducts = document.getElementById('cart-products')
 
 const products = [
     {
@@ -66,17 +67,21 @@ const displayProductsInCart = () => {
                 if (productsInCart[i].id == products[j].id) {
                     tbodyTableContent.innerHTML += `
                     <tr>
-                       <td>
-                    <img class ="cart-product-img" src="${products[j].imageUrl}">
-                  </td>
-                  <td>${products[j].title}</td>
-                  <td>${products[j].price}</td>
-                  <td>${productsInCart[i].qte}</td>
-                  <td> ${productsInCart[i].qte * products[j].price} </td>
-                  <td>
-                    <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
-                    </td> 
-                 </tr>`
+                        <td>
+                            <img class ="cart-product-img" src="${products[j].imageUrl}">
+                        </td>
+                        <td>${products[j].title}</td>
+                        <td>${products[j].price}</td>
+                        <td>
+                        <button class="btn-minus" id="minus-btn" onclick="minusQuantity(${i})"> - </button>
+                        ${productsInCart[i].qte}
+                        <button class="btn-plus" id="plus-btn" onclick="plusQuantity(${i})"> + </button>
+                        </td>
+                        <td>${productsInCart[i].qte * products[j].price}</td>
+                        <td>
+                            <button class="btn-delete" onclick="removeProductInCart(${productsInCart[i].id})" >Delete</button>
+                        </td> 
+                    </tr>`
                     sum += productsInCart[i].qte * products[j].price;
                     spanTotalPrice.textContent = sum;
                     break;
@@ -86,6 +91,13 @@ const displayProductsInCart = () => {
         }
     } else {
         productsInCart = [];
+        divCartProducts.innerHTML = `
+        <h1 style="text-align:center"> Your Shopping Cart is Empty </h1> ` ;
+    }
+
+    if ( productsInCart.length == 0) {
+        divCartProducts.innerHTML = `
+        <h1 style="text-align:center"> Your Shopping Cart is Empty </h1> ` ;
     }
 }
 
@@ -106,6 +118,31 @@ const removeProductInCart = (productId) => {
     localStorage.setItem('cart-products', JSON.stringify(productsInCart));
 
     init();
+}
+
+const plusQuantity = (index) => {
+
+    spanCartNumber.textContent = Number(spanCartNumber.textContent) + 1;
+    localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+    productsInCart[index].qte++;
+    localStorage.setItem('cart-products', JSON.stringify(productsInCart));
+
+    init();
+
+}
+
+const minusQuantity = (index) => {
+    if (productsInCart[index].qte > 1) {
+        spanCartNumber.textContent = Number(spanCartNumber.textContent) - 1;
+        localStorage.setItem('cart-number', spanCartNumber.textContent);
+
+        productsInCart[index].qte--;
+        localStorage.setItem('cart-products', JSON.stringify(productsInCart));
+
+        init();
+    }
+
 }
 
 const init = () => {

@@ -47,3 +47,15 @@ td {
     padding-right: 250px;
     margin: 75px 0;
 }
+
+.btn-plus {
+    padding: 0 4px;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+.btn-minus {
+    padding: 0 5px;
+    margin: 0 4px;
+    cursor: pointer;
+}
