@@ -21,3 +21,15 @@
 - [X] remove products from cart
 - [X] play with quantity
 - [X] display "no products in cart" if the cart is empty
+
+#### 4 - FILTER PRODUCTS 
+- [X] Filter by name
+- [X] Filter by price
+
+#### 5 - LOGIN PAGE
+- [] create login page
+- [] update the navbar with a button to navigate to login page
+- [] create login form
+- [] implement required validators on inputs
+
+
