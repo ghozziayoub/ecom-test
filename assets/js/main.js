@@ -2,6 +2,9 @@
 const ulCategoriesList = document.getElementById('categories-list');
 const divProductsList = document.getElementById('products-list');
 const spanCartNumber = document.getElementById('cart-number');
+const inputFilterProducts = document.getElementById('input-filter-products');
+const inputMinPrice = document.getElementById('min-price');
+const inputMaxPrice = document.getElementById('max-price');
 
 // DATA
 const categories = [
@@ -35,35 +38,35 @@ const products = [
         id: 0,
         imageUrl: "https://lys.tn:3002/public/providers/ybcjcvdd9nl_1647518211287.jpg",
         title: "Hend Hachicha Make up Artist",
-        price: "500",
+        price: 500,
         categoryId: 3,
     },
     {
         id: 1,
         imageUrl: "https://lys.tn:3002/public/providers/de35vnwo01h_1647517002104.jpg",
         title: "Guirat l'art de la maison",
-        price: "65",
+        price: 65,
         categoryId: 1,
     },
     {
         id: 2,
         imageUrl: "https://lys.tn:3002/public/providers/7mg8xf9u93f_1647521853609.jpg",
         title: "Patisserie Hachicha By Omar",
-        price: "100",
+        price: 100,
         categoryId: 5,
     },
     {
         id: 3,
         imageUrl: "https://lys.tn:3002/public/providers/0vdr2n97xn3p_1647516164671.jpg",
         title: "Meubles Jarraya",
-        price: "4000",
+        price: 4000,
         categoryId: 2,
     },
     {
         id: 4,
         imageUrl: "https://lys.tn:3002/public/providers/y3b9xuj00h_1647522354550.jpg",
         title: "F L E U R E N T I N O",
-        price: "100",
+        price: 100,
         categoryId: 4,
     },
 ];
@@ -166,6 +169,27 @@ const initProductsInCart = () => {
     } else {
         productsInCart = [];
     }
+}
+
+const filterproducts = () => {
+    let searchText = inputFilterProducts.value
+
+    displayedProducts = []
+
+    searchText.length == 0 ? displayedProducts = products : displayedProducts = products.filter(product => product.title.toLowerCase().includes(searchText.toLowerCase()))
+
+    displayProducts()
+}
+
+const filterproductsByPrice = () => {
+    let minPrice = Number(inputMinPrice.value);
+    let maxPrice = Number(inputMaxPrice.value);
+
+    displayedProducts = []
+
+    minPrice == 0 && maxPrice == 0 ? displayedProducts = products : displayedProducts = products.filter(product => product.price >= minPrice &&  product.price <= maxPrice );
+
+    displayProducts()
 }
 
 const init = () => {

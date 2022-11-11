@@ -20,4 +20,4 @@
 - [X] display total price
 - [X] remove products from cart
 - [X] play with quantity
-- [] display "no products in cart" if the cart is empty
+- [X] display "no products in cart" if the cart is empty
