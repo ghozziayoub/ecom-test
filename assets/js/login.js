@@ -14,9 +14,14 @@ const login = () => {
     if (email == "") {
         spanEmailWarning.textContent = "this field cannot be empty";
     }
-    
+
     if (password == "") {
         spanPasswordWarning.textContent = "this field cannot be empty";
+    }
+
+    if(email.length>0 && password.length>0) {
+        localStorage.setItem('login', "Connected");
+        window.location.href = 'index.html';
     }
 
 }

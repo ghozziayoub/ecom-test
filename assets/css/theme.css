@@ -8,6 +8,7 @@
 
 .container {
     padding: 5px 50px;
+    overflow: hidden;
 }
 
 .bg-gray {
@@ -53,7 +54,8 @@ i {
     font-size: 20px;
 }
 
-.connect {
+.connect,
+.btn-command {
     padding: 8px 20px;
     border: 1px solid #9378F9;
     background-color: #9378F9;
@@ -62,4 +64,10 @@ i {
     text-decoration: none;
     text-align: center;
     margin: 15px;
+}
+
+.log-out {
+    background-color: #f44336;
+    border: none;
+
 }
