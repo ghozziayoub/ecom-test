@@ -31,13 +31,35 @@
     max-height: 100%;
 }
 
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 150px;
+}
 .shopping-cart{
     width: 20%;
     height: 100%;
     padding-top: 15px;
+    display: flex;
+    align-items: center;
+}
+.shopping-icon {
+    padding: 0 10px;
 }
 
 i {
     color: #9378F9;
     font-size: 20px;
+}
+
+.connect {
+    padding: 8px 20px;
+    border: 1px solid #9378F9;
+    background-color: #9378F9;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin: 15px;
 }

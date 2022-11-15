@@ -27,7 +27,7 @@
 - [X] Filter by price
 
 #### 5 - LOGIN PAGE
-- [] create login page
+- [X] create login page
 - [] update the navbar with a button to navigate to login page
 - [] create login form
 - [] implement required validators on inputs
