@@ -5,6 +5,8 @@ const spanCartNumber = document.getElementById('cart-number');
 const inputFilterProducts = document.getElementById('input-filter-products');
 const inputMinPrice = document.getElementById('min-price');
 const inputMaxPrice = document.getElementById('max-price');
+const aButtonLogin = document.getElementById('buttonLogin');
+const divLoginButton = document.getElementById('login-button');
 
 // DATA
 const categories = [
@@ -187,9 +189,24 @@ const filterproductsByPrice = () => {
 
     displayedProducts = []
 
-    minPrice == 0 && maxPrice == 0 ? displayedProducts = products : displayedProducts = products.filter(product => product.price >= minPrice &&  product.price <= maxPrice );
+    minPrice == 0 && maxPrice == 0 ? displayedProducts = products : displayedProducts = products.filter(product => product.price >= minPrice && product.price <= maxPrice);
 
     displayProducts()
+}
+
+const initLogin = () => {
+    const login = localStorage.getItem('login');
+    if (login) {
+        divLoginButton.innerHTML = `<a id="buttonLogin" class="connect log-out" onclick="logOut()">Log Out</a>`
+    } else {
+        divLoginButton.innerHTML = `<a id="buttonLogin" href="./login.html" class="connect" onclick="logOut()">Log In</a>`
+    }
+
+}
+
+const logOut = () => {
+    localStorage.removeItem('login');
+    window.location.href = "./index.html"
 }
 
 const init = () => {
@@ -197,6 +214,7 @@ const init = () => {
     displayProducts();
     displayCartNumber();
     initProductsInCart();
+    initLogin();
 }
 
 // Function's calls

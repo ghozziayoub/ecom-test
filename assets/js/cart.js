@@ -1,7 +1,11 @@
 const spanCartNumber = document.getElementById('cart-number');
 const tbodyTableContent = document.getElementById('table-content');
 const spanTotalPrice = document.getElementById('total-price');
-const divCartProducts = document.getElementById('cart-products')
+const divCartProducts = document.getElementById('cart-products');
+const aButtonLogin = document.getElementById('buttonLogin');
+const divLoginButton = document.getElementById('login-button');
+const aButtonCommand = document.getElementById('button-Command');
+
 
 const products = [
     {
@@ -145,9 +149,39 @@ const minusQuantity = (index) => {
 
 }
 
+const initLogin = () => {
+    const login = localStorage.getItem('login');
+    if (login) {
+        divLoginButton.innerHTML = `<a id="buttonLogin" class="connect log-out" onclick="logOut()">Log Out</a>`
+    } else {
+        divLoginButton.innerHTML = `<a id="buttonLogin" href="./login.html" class="connect" onclick="logOut()">Log In</a>`
+    }
+
+}
+
+const logOut = () => {
+    localStorage.removeItem('login');
+    window.location.href = "./index.html"
+}
+
+const commandProduct = () => {
+    const login = localStorage.getItem('login');
+    if (login) {
+        if (window.confirm('your order is confirmed')) {
+            localStorage.removeItem('cart-number');
+            localStorage.removeItem('cart-products');
+            aButtonCommand.href ="./index.html";
+        }
+    }
+    else {
+        aButtonCommand.href ="./login.html"
+    }
+}
+
 const init = () => {
     displayCartNumber();
     displayProductsInCart();
+    initLogin();
 }
 
 // Function's calls

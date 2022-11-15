@@ -22,12 +22,18 @@
       <a href="./index.html"><img src="https://lys.tn/assets/images/primary_logo.png" alt="Logo Lys"
           class="logo-img" /></a>
     </div>
-    <div class="shopping-cart">
-      <span>
-        <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-      </span>
-      <span id="cart-number"></span>
+    <div class="navigation">
+      <div class="shopping-cart">
+        <span class="shopping-icon">
+          <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </span>
+        <span id="cart-number"></span>
+      </div>
+      <div id="login-button">
+        
+      </div>
     </div>
+
   </div>
 
   <div class="container content">
@@ -44,9 +50,9 @@
         </div>
         <div class="search-price-products">
           <label> Min : </label>
-          <input type="text" id="min-price"/>
+          <input type="text" id="min-price" />
           <label> Max : </label>
-          <input type="text" id="max-price"/>
+          <input type="text" id="max-price" />
           <button class="btn-search btn-search-price" onclick="filterproductsByPrice()">Search</button>
         </div>
       </div>
